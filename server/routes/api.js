@@ -63,11 +63,12 @@ router.get('/tasks', (req, res) => {
 
 // Get users
 router.get('/users/:id', (req, res) => {
-  _id = new ObjectID(req.params.id);
+  console.log(req);
+  let objectId = new ObjectID(req.params.id);
   connection((db) => {
   var database = db.db('ski-tasks');
-  database.collection('tasks')
-    .find(_id)
+  database.collection('users')
+    .findOne({_id:objectId})
     .then((user) => {
     response.data = user;
   res.json(response);

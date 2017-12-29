@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 
 import 'rxjs/add/operator/map';
@@ -18,6 +18,9 @@ export class DataService {
   }
 
   public getUser(id: string): Observable<any> {
-    return this._http.get<any>('api/users/${id}');
+   // let params = new HttpParams().set('id', id);
+    let apiUrl = 'api/users/' + id;
+
+    return this._http.get<any>(apiUrl);
   }
 }
