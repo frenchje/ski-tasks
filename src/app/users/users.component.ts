@@ -22,4 +22,14 @@ export class UsersComponent implements OnInit {
   ngOnInit() {
   }
 
+  deleteUser(user) {
+    this._dataService.deleteUser(user).subscribe( (res)=>
+    {
+      console.log("Delete Successful call getUsers");
+      this._dataService.getUsers()
+        .subscribe((res) => {console.log("Got users"); this.users = res['data']});
+    });
+
+  }
+
 }

@@ -23,4 +23,16 @@ export class DataService {
 
     return this._http.get<any>(apiUrl);
   }
+
+  public saveUser(user: any): Observable<any> {
+
+    let apiUrl = 'api/users/' + user._id;
+
+    return this._http.post<any>(apiUrl,user);
+  }
+
+  public deleteUser(user: any): Observable<any> {
+    let apiUrl = 'api/users/' + user._id;
+    return this._http.delete<any>(apiUrl);
+  }
 }

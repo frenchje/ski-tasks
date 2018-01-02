@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { RouterModule, Routes} from "@angular/router";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule} from "@angular/forms";
 
 
 //Import the HTTP module and our data service
@@ -27,7 +28,8 @@ import { UserComponent } from './user/user.component';
     BrowserModule,
     HttpClientModule,
     NgbModule.forRoot(),
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [DataService],
   bootstrap: [AppComponent]

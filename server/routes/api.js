@@ -63,7 +63,7 @@ router.get('/tasks', (req, res) => {
 
 // Get users
 router.get('/users/:id', (req, res) => {
-  console.log(req);
+  //console.log(req);
   let objectId = new ObjectID(req.params.id);
   connection((db) => {
   var database = db.db('ski-tasks');
@@ -78,5 +78,49 @@ router.get('/users/:id', (req, res) => {
 });
 });
 });
+
+//Save user
+router.post('/users/:id',(req, res) => {
+
+  if(req.body._id !== undefined && req.body._id !== null) {
+    let objectId = new ObjectID(req.params.id);
+    req.body._id = objectId;
+  }
+
+  connection((db) => {
+    var database = db.db('ski-tasks');
+    database.collection('users')
+      .save(req.body).then((user) => {
+        console.log("Save Response: ", req.body);
+        let newObjectId = new ObjectID(req.body._id);
+      database.collection('users').findOne({_id:newObjectId})
+        .then((user) => {
+          response.data = user;
+          res.json(response);
+        })
+        .catch((err) => {
+          sendError(err, res);
+        });
+    })
+      .catch ((err) => {
+        sendError(err, res);
+      });
+    });
+});
+
+router.delete('/users/:id',(req, res) => {
+  let objectId = new ObjectID(req.params.id);
+
+  connection((db) => {
+    var database = db.db('ski-tasks');
+    database.collection('users').remove({_id:objectId}).then((success) => {
+      res.json(success);
+    })
+      .catch ((err) => {
+        sendError(err, res);
+      });
+  });
+
+  });
 
 module.exports = router;

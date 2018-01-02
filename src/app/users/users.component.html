@@ -3,5 +3,8 @@
 <br />
 <h3>Users</h3>
 <span><ul>
-  <li *ngFor="let user of users"><a [routerLink]="['/users',user._id]">{{ user.last_name }}, {{ user.first_name }}</a>  | Tasks | Sign Offs</li>
+  <li *ngFor="let user of users"><a [routerLink]="['/users',user._id]">{{ user.lastName }}, {{ user.firstName }}</a> | <button (click)="deleteUser(user)">Delete</button> | Tasks | Sign Offs</li>
 </ul></span>
+<br />
+<a routerLink="/users/add">+ Add User</a>
+<br />
