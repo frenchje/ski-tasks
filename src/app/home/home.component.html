@@ -1,6 +1,11 @@
-<h3> Welcome To Ski Tasks !</h3>
+<h1> Welcome To Ski Tasks !</h1>
+<h3> Hello {{currentUser.firstName}}!</h3><p>You are logged in with Angular 5!!</p>
 
 <br />
 
 <h4><a routerLink="/users">Users</a></h4>
 <h4><a routerLink="/tasks">Tasks</a></h4>
+
+<p> <a [routerLink]="['/login']">Logout</a></p>
+
+
