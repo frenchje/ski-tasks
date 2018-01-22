@@ -7,15 +7,15 @@ import { User } from '../_models/user';
 export class UserService {
 
   //TODO: Update user model and mongo db to match definition below.
-  //TODO: change Mongo calls to use an id rather than an object id.
+  //TODO: change Mongo calls to use an _id rather than an object _id.
   constructor(private http: HttpClient) { }
 
   getAll() {
     return this.http.get<User[]>('/api/users');
   }
 
-  getById(id: number) {
-    return this.http.get('/api/users/' + id);
+  getById(_id: number) {
+    return this.http.get('/api/users/' + _id);
   }
 
   create(user: User) {
@@ -23,10 +23,10 @@ export class UserService {
   }
 
   update(user: User) {
-    return this.http.put('/api/users/' + user.id, user);
+    return this.http.put('/api/users/' + user._id, user);
   }
 
-  delete(id: number) {
-    return this.http.delete('/api/users/' + id);
+  delete(_id: number) {
+    return this.http.delete('/api/users/' + _id);
   }
 }
